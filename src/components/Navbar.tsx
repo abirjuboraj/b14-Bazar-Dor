@@ -12,7 +12,7 @@ const Navbar = async () => {
   const products: Product[] = await res.json();
 
   return (
-    <header className="w-full bg-white">
+    <header className="w-full">
       <div className="w-full py-3 sm:py-4">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-3 sm:px-4">
           <div className="flex min-w-0 items-center gap-2 sm:gap-3">

@@ -11,7 +11,7 @@ const Navlinks = async () => {
   return (
     <div className="w-full border-y border-gray-200 bg-white/80">
       <div className="mx-auto w-full max-w-6xl">
-        <nav className="flex items-center gap-1 overflow-x-auto py-2 sm:gap-2 sm:py-2.5 [&::-webkit-scrollbar]:hidden">
+        <nav className="flex items-center gap-1 overflow-x-auto py-2 sm:gap-2 sm:py-2.5">
           {categoryName.map((item: categoryType) => (
             <Link
               key={item.slug}
