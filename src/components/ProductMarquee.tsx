@@ -54,7 +54,7 @@ const ProductMarquee = ({ products }: MarqueeProps) => {
 
               {dir === "down" && (
                 <span className="font-semibold text-green-600">
-                  ▼ {pct.toLocaleString("bn-BD")}%
+                  ▼ {Math.abs(pct).toLocaleString("bn-BD")}%
                 </span>
               )}
 

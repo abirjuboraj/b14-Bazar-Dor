@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Banner = () => {
   return (
-    <section className="mx-auto my-5 w-full max-w-6xl px-3 sm:my-7 sm:px-4">
+    <section className=" my-5 w-full mx-auto max-w-6xl px-3 sm:my-7 sm:px-4">
       <div className="flex flex-col overflow-hidden rounded-2xl border border-green-100 bg-white sm:rounded-3xl md:flex-row md:items-center">
         <div className="flex-1 p-5 sm:p-7 md:p-10 ">
           <div className="max-w-xl">
