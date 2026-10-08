@@ -1,6 +1,6 @@
 "use client";
 
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useState } from "react";
@@ -38,6 +38,10 @@ const SignUpPage = () => {
       toast.success("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!");
       redirect("/sign-in")
     }
+  };
+
+  const handleGoogleSignUp = async () => {
+    await signIn.social({ provider: "google" });
   };
 
 
@@ -132,6 +136,7 @@ const SignUpPage = () => {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button
               type="button"
+              onClick={handleGoogleSignUp}
               className="flex h-11 items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 text-sm font-semibold text-neutral-700 transition hover:bg-green-50 disabled:cursor-not-allowed disabled:opacity-60"
             >
               <FcGoogle className="text-xl" />
@@ -148,7 +153,7 @@ const SignUpPage = () => {
           </div>
 
           <p className="mt-6 text-center text-sm text-neutral-500">
-            ইতিমধ্যে অ্যাকাউন্ট আছে?{" "}
+            ইতিমধ্যে অ্যাকাউন্ট আছে?
             <Link
               href="/signin"
               className="font-semibold text-green-600 hover:text-green-700 hover:underline"

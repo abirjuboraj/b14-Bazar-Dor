@@ -30,6 +30,12 @@ const SignInPage = () => {
     }
   };
 
+  const handleGoogleSignIn = async() => {
+    await signIn.social({
+    provider: "google",
+  });
+  }
+
   return (
     <main className="flex min-h-[calc(100vh-80px)] items-center justify-center px-4 py-8 sm:py-12">
       <div className="w-full max-w-md">
@@ -103,6 +109,7 @@ const SignInPage = () => {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button
               type="button"
+              onClick={handleGoogleSignIn}
               className="flex h-11 items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 text-sm font-semibold text-neutral-700 transition-all duration-200 hover:border-green-200 hover:bg-green-50"
             >
               <FcGoogle className="text-xl" />
