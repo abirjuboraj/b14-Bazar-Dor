@@ -1,4 +1,5 @@
 import { Product } from "@/type/type";
+import Link from "next/link";
 
 const ProductCard = ({ product }: { product: Product }) => {
   const getUnit = (unit: string) => {
@@ -10,9 +11,9 @@ const ProductCard = ({ product }: { product: Product }) => {
     return unit;
   };
   return (
-    <div
-      key={product.id}
-      className="group rounded-2xl border border-neutral-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-green-400 hover:shadow-lg"
+    <Link
+      href={`/product/${product.id}`}
+      className="group block rounded-2xl border border-neutral-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-green-400 hover:shadow-lg"
     >
       <div className="flex items-center gap-3">
         <div className="flex h-13 w-13 shrink-0 items-center justify-center rounded-xl bg-green-50 text-3xl sm:h-14 sm:w-14 sm:text-4xl">
@@ -60,7 +61,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

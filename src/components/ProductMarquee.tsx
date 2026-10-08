@@ -30,7 +30,7 @@ const ProductMarquee = ({ products }: MarqueeProps) => {
           return (
             <Link
               key={product.id}
-              href={`/product/${product.slug}`}
+              href={`/product/${product.id}`}
               className="mx-5 flex shrink-0 items-center gap-2 text-sm"
             >
               <span className="text-lg">{product.image}</span>
