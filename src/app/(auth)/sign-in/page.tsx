@@ -1,8 +1,35 @@
+'use client';
+import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const SignInPage = () => {
+    const handleSignIn = async(e:React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+
+        const userData = Object.fromEntries(formData.entries());
+
+    const { data, error } = await signIn.email({
+      email: userData.email as string,
+      password: userData.password as string,
+      rememberMe: true,
+      callbackURL: "/",
+    });
+
+    if (error) {
+      toast.error(error.message || "ইমেইল অথবা পাসওয়ার্ড সঠিক নয়।");
+      return;
+    }
+
+    if (data?.user) {
+      toast.success("সফলভাবে সাইন ইন হয়েছে!");
+    }
+  };
+
   return (
     <main className="flex min-h-[calc(100vh-80px)] items-center justify-center px-4 py-8 sm:py-12">
       <div className="w-full max-w-md">
@@ -17,7 +44,7 @@ const SignInPage = () => {
             </p>
           </div>
 
-          <form className="mt-7 space-y-4">
+          <form onSubmit={handleSignIn} className="mt-7 space-y-4">
             <div>
               <label
                 htmlFor="email"
@@ -52,12 +79,7 @@ const SignInPage = () => {
                 placeholder="আপনার পাসওয়ার্ড লিখুন"
                 className="h-11 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm text-neutral-800 outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
               />
-               <Link
-                  href="#"
-                  className="text-xs font-medium text-green-600 transition hover:text-green-700 hover:underline"
-                >
-                  পাসওয়ার্ড ভুলে গেছেন?
-                </Link>
+              
             </div>
 
             <button

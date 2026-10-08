@@ -1,7 +1,8 @@
 import Link from "next/link";
-import React from "react";
+
 
 const NavLinks = () => {
+    
   return (
     <div className="flex shrink-0 items-center gap-2 sm:gap-4">
       <Link href="/sign-in">
