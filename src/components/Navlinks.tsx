@@ -1,35 +1,22 @@
-import { categoryType } from "@/type/type";
 import Link from "next/link";
+import React from "react";
 
-const Navlinks = async () => {
-  const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/categories"
-  );
-
-  const categoryName: categoryType[] = await res.json();
-
+const NavLinks = () => {
   return (
-    <div className="w-full border-y border-gray-200 bg-white/80">
-      <div className="mx-auto w-full max-w-6xl">
-        <nav className="flex items-center gap-1 overflow-x-auto py-2 sm:gap-2 sm:py-2.5">
-          {categoryName.map((item: categoryType) => (
-            <Link
-              key={item.slug}
-              href={`/category/${item.slug}`}
-              className="group flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-gray-600 transition-all duration-200 hover:bg-green-50 hover:text-green-600 sm:gap-2 sm:px-3.5 sm:text-sm lg:px-4"
-            >
-              <span className="text-base leading-none transition-transform duration-200 group-hover:scale-110 sm:text-lg">
-                {item.icon}
-              </span>
+    <div className="flex shrink-0 items-center gap-2 sm:gap-4">
+      <Link href="/sign-in">
+        <button className="px-1.5 text-xs font-semibold text-neutral-700 hover:text-green-600 sm:px-2 sm:text-sm">
+          সাইন ইন
+        </button>
+      </Link>
 
-              <span className="whitespace-nowrap">{item.nameBn}</span>
-            </Link>
-          ))}
-        </nav>
-      </div>
+      <Link href="/sign-up">
+        <button className="btn h-9 min-h-9 bg-green-600 px-3 text-xs font-semibold text-white hover:bg-green-700 sm:h-10 sm:px-5 sm:text-sm">
+          সাইন আপ
+        </button>
+      </Link>
     </div>
   );
 };
 
-export default Navlinks;
-
+export default NavLinks;
