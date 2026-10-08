@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
 import toast from "react-hot-toast";
@@ -6,12 +6,12 @@ import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const SignInPage = () => {
-    const handleSignIn = async(e:React.SubmitEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const handleSignIn = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e.currentTarget);
 
-        const userData = Object.fromEntries(formData.entries());
+    const userData = Object.fromEntries(formData.entries());
 
     const { data, error } = await signIn.email({
       email: userData.email as string,
@@ -30,11 +30,17 @@ const SignInPage = () => {
     }
   };
 
-  const handleGoogleSignIn = async() => {
+  const handleGoogleSignIn = async () => {
     await signIn.social({
-    provider: "google",
-  });
-  }
+      provider: "google",
+    });
+  };
+
+  const handleGithubSignIn = async () => {
+    await signIn.social({
+      provider: "github",
+    });
+  };
 
   return (
     <main className="flex min-h-[calc(100vh-80px)] items-center justify-center px-4 py-8 sm:py-12">
@@ -85,7 +91,6 @@ const SignInPage = () => {
                 placeholder="আপনার পাসওয়ার্ড লিখুন"
                 className="h-11 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm text-neutral-800 outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
               />
-              
             </div>
 
             <button
@@ -99,9 +104,7 @@ const SignInPage = () => {
           <div className="my-6 flex items-center gap-3">
             <div className="h-px flex-1 bg-neutral-200" />
 
-            <span className="text-xs font-medium text-neutral-400">
-              অথবা
-            </span>
+            <span className="text-xs font-medium text-neutral-400">অথবা</span>
 
             <div className="h-px flex-1 bg-neutral-200" />
           </div>
@@ -118,6 +121,7 @@ const SignInPage = () => {
 
             <button
               type="button"
+              onClick={handleGithubSignIn}
               className="flex h-11 items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 text-sm font-semibold text-neutral-700 transition-all duration-200 hover:border-neutral-300 hover:bg-neutral-100"
             >
               <FaGithub className="text-xl text-[#181717]" />

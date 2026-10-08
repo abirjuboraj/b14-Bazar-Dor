@@ -44,6 +44,11 @@ const SignUpPage = () => {
     await signIn.social({ provider: "google" });
   };
 
+  const handleGithubSignUp = async() => {
+    await signIn.social({
+        provider: "github"
+    })
+  }
 
   return (
     <main className="flex min-h-[calc(100vh-80px)] items-center justify-center px-4 py-8 sm:py-12">
@@ -145,6 +150,7 @@ const SignUpPage = () => {
 
             <button
               type="button"
+              onClick={handleGithubSignUp}
               className="flex h-11 items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-60"
             >
               <FaGithub className="text-xl text-[#181717]" />
