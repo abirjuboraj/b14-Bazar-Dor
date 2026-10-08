@@ -46,7 +46,7 @@ const ProductSection = async () => {
         </div>
       </div>
 
-      <div id="allProducts" className="mt-10">
+      <div id="সব-পণ্য" className="mt-10">
           <div className="mb-5">
             <h2 className="text-2xl font-semibold">সব পণ্য</h2>
             <p className="text-neutral-500 text-sm">মোট ৩৩টি পণ্য দেখানো হচ্ছে</p>

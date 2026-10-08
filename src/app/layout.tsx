@@ -20,9 +20,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="light"
       className={`${notoSerifBengali.className} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col container mx-auto">
+      <body className="min-h-screen flex flex-col container mx-auto">
         <Navbar></Navbar>
-        <main>{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer></Footer>
       </body>
     </html>

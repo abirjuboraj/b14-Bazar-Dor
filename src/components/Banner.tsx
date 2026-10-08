@@ -25,7 +25,7 @@ const Banner = () => {
             </p>
 
             <a
-              href="#allProducts"
+              href="#সব-পণ্য"
               className="btn mt-6 rounded-xl border-0 bg-green-600 px-5 text-sm font-semibold text-white hover:bg-green-700"
             >
               সব পণ্য দেখুন
