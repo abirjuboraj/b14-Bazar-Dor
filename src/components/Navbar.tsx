@@ -54,7 +54,7 @@ const Navbar = async () => {
         </div>
       </div>
 
-      <Navlinks />
+      <Navlinks></Navlinks>
 
       <ProductMarquee products={products}></ProductMarquee>
     </header>
