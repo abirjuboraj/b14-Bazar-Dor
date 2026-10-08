@@ -46,16 +46,16 @@ const ProductSection = async () => {
         </div>
       </div>
 
-      <div className="mt-10">
-          <div>
-            <h2>সব পণ্য</h2>
-            <p>মোট ৩৩টি পণ্য দেখানো হচ্ছে</p>
+      <div id="allProducts" className="mt-10">
+          <div className="mb-5">
+            <h2 className="text-2xl font-semibold">সব পণ্য</h2>
+            <p className="text-neutral-500 text-sm">মোট ৩৩টি পণ্য দেখানো হচ্ছে</p>
+          </div>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {products.map((product:Product) =>(
                     <ProductCard key={product.id} product={product}></ProductCard>
                 ))}
             </div>
-          </div>
       </div>
     </section>
   );
