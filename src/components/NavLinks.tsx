@@ -25,7 +25,7 @@ const NavLinks = () => {
 
     setOpen(false);
     toast.success("সফলভাবে সাইন আউট হয়েছে।");
-    redirect('/')
+    redirect("/");
   };
 
   if (isPending) {
@@ -86,33 +86,33 @@ const NavLinks = () => {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 w-64 overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-lg">
-          <div className="border-b border-neutral-100 px-4 py-3">
-            <p className="truncate text-sm font-semibold text-neutral-800">
+        <div className="absolute right-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-lg sm:w-64 sm:rounded-2xl">
+          <div className="border-b border-neutral-100 px-3 py-2.5 sm:px-4 sm:py-3">
+            <p className="truncate text-xs font-semibold text-neutral-800 sm:text-sm">
               {user.name}
             </p>
 
-            <p className="mt-1 truncate text-xs text-neutral-500">
+            <p className="mt-1 truncate text-[10px] text-neutral-500 sm:text-xs">
               {user.email}
             </p>
           </div>
 
-          <div className="p-2">
+          <div className="p-1.5 sm:p-2">
             <Link
               href="/profile"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-green-50 hover:text-green-600"
+              className="flex items-center gap-2 rounded-lg px-2.5 py-2 text-xs font-medium text-neutral-700 transition hover:bg-green-50 hover:text-green-600 sm:gap-3 sm:rounded-xl sm:px-3 sm:py-2.5 sm:text-sm"
             >
-              <FaUser className="text-sm" />
+              <FaUser className="text-xs sm:text-sm" />
               আমার প্রোফাইল
             </Link>
 
             <button
               type="button"
               onClick={handleSignOut}
-              className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-red-500 transition hover:bg-red-50"
+              className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-xs font-medium text-red-500 transition hover:bg-red-50 sm:gap-3 sm:rounded-xl sm:px-3 sm:py-2.5 sm:text-sm"
             >
-              <FaSignOutAlt className="text-sm" />
+              <FaSignOutAlt className="text-xs sm:text-sm" />
               সাইন আউট
             </button>
           </div>

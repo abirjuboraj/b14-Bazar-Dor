@@ -1,23 +1,33 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaEdit, FaSignOutAlt } from "react-icons/fa";
 import { signOut, updateUser, useSession } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 
 const ProfilePage = () => {
-  const { data: session } = useSession();
-  const [name, setName] = useState(session?.user?.name || "");
+  const { data: session, isPending } = useSession();
+
+  const [name, setName] = useState("");
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (session?.user) {
+      setInterval(() => {
+        setName(session.user.name || "");
+      }, 0);
+    }
+  }, [session?.user]);
+
+  if (isPending) return null;
   if (!session?.user) return null;
 
   const user = session.user;
 
-  const handleUpdate = async (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!name.trim()) {
@@ -27,19 +37,23 @@ const ProfilePage = () => {
 
     setLoading(true);
 
-    const { error } = await updateUser({
-      name: name.trim(),
-    });
+    try {
+      const { error } = await updateUser({
+        name: name.trim(),
+      });
 
-    setLoading(false);
+      if (error) {
+        toast.error("নাম আপডেট করা সম্ভব হয়নি।");
+        return;
+      }
 
-    if (error) {
+      setEditing(false);
+      toast.success("নাম সফলভাবে আপডেট হয়েছে।");
+    } catch {
       toast.error("নাম আপডেট করা সম্ভব হয়নি।");
-      return;
+    } finally {
+      setLoading(false);
     }
-
-    setEditing(false);
-    toast.success("নাম সফলভাবে আপডেট হয়েছে।");
   };
 
   const handleSignOut = async () => {
@@ -51,7 +65,7 @@ const ProfilePage = () => {
     }
 
     toast.success("সফলভাবে সাইন আউট হয়েছে।");
-    redirect("/sign-in")
+    redirect("/sign-in");
   };
 
   return (
@@ -76,7 +90,7 @@ const ProfilePage = () => {
             />
           ) : (
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-green-100 text-xl font-bold text-green-600 sm:h-16 sm:w-16">
-              {user.name?.charAt(0)}
+              {user.name?.charAt(0)?.toUpperCase() || "U"}
             </div>
           )}
 
@@ -84,6 +98,7 @@ const ProfilePage = () => {
             <h2 className="truncate text-sm font-bold text-neutral-800 sm:text-base">
               {user.name}
             </h2>
+
             <p className="truncate text-xs text-neutral-500 sm:text-sm">
               {user.email}
             </p>
@@ -91,6 +106,7 @@ const ProfilePage = () => {
         </div>
 
         <button
+          type="button"
           onClick={handleSignOut}
           className="flex w-full items-center justify-center gap-2 rounded-xl bg-red-50 px-4 py-2.5 text-sm font-semibold text-red-500 transition hover:bg-red-100 md:w-auto"
         >
@@ -110,13 +126,13 @@ const ProfilePage = () => {
               নাম
             </label>
 
-            <div className="flex flex-col gap-2 sm:flex-row">
+            <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
               <input
                 type="text"
                 value={name}
-                disabled={!editing}
+                disabled={!editing || loading}
                 onChange={(e) => setName(e.target.value)}
-                className="h-11 min-w-0 flex-1 rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm outline-none focus:border-green-500 disabled:text-neutral-500"
+                className="box-border h-12 min-h-12 w-full min-w-0 flex-1 rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm outline-none focus:border-green-500 disabled:text-neutral-500 sm:h-11 sm:min-h-11"
               />
 
               {!editing && (
@@ -126,7 +142,7 @@ const ProfilePage = () => {
                   className="flex h-11 w-full shrink-0 items-center justify-center gap-2 rounded-xl border border-neutral-200 px-4 text-sm font-semibold text-neutral-600 transition hover:bg-neutral-50 sm:w-auto"
                 >
                   <FaEdit />
-                  Edit
+                  পরিবর্তন করুন
                 </button>
               )}
             </div>
@@ -152,18 +168,19 @@ const ProfilePage = () => {
                 disabled={loading}
                 className="rounded-xl bg-green-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700 disabled:opacity-60"
               >
-                {loading ? "আপডেট হচ্ছে..." : "Update"}
+                {loading ? "আপডেট হচ্ছে..." : "আপডেট"}
               </button>
 
               <button
                 type="button"
+                disabled={loading}
                 onClick={() => {
                   setName(user.name || "");
                   setEditing(false);
                 }}
-                className="rounded-xl border border-neutral-200 px-5 py-2.5 text-sm font-semibold text-neutral-600 transition hover:bg-neutral-50"
+                className="rounded-xl border border-neutral-200 px-5 py-2.5 text-sm font-semibold text-neutral-600 transition hover:bg-neutral-50 disabled:opacity-60"
               >
-                Cancel
+                বাতিল করুন
               </button>
             </div>
           )}

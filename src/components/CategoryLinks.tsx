@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const CategoryLinks = async () => {
   const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/categories"
+    "https://api.abcz.workers.dev/api/bazardor/categories"
   );
 
   const categoryName: categoryType[] = await res.json();
