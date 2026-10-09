@@ -9,7 +9,6 @@ import { redirect } from "next/navigation";
 
 const ProfilePage = () => {
   const { data: session, isPending } = useSession();
-  
 
   if (isPending) {
     return (
@@ -88,23 +87,13 @@ const ProfilePage = () => {
       </section>
 
       <section className="mt-5 overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-        <div className="flex flex-col gap-3 border-b border-neutral-100 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-          <div>
-            <h2 className="text-lg font-bold text-neutral-800">
-              অ্যাকাউন্টের তথ্য
-            </h2>
-            <p className="mt-1 text-sm leading-6 text-neutral-500">
-              আপনার নাম ও ইমেইল ঠিকানা এখানে দেখতে পারবেন।
-            </p>
-          </div>
-
-          <Link
-            href="/profile/updateProfile"
-            className="inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-200 sm:w-auto"
-          >
-            <FaEdit />
-            তথ্য পরিবর্তন করুন
-          </Link>
+        <div className="border-b border-neutral-100 p-4 sm:p-6">
+          <h2 className="text-lg font-bold text-neutral-800">
+            অ্যাকাউন্টের তথ্য
+          </h2>
+          <p className="mt-1 text-sm leading-6 text-neutral-500">
+            আপনার নাম ও ইমেইল ঠিকানা এখানে দেখতে পারবেন।
+          </p>
         </div>
 
         <div className="grid gap-5 p-4 sm:p-6 md:grid-cols-2">
@@ -125,6 +114,16 @@ const ProfilePage = () => {
               {user.email}
             </div>
           </div>
+        </div>
+
+        <div className="flex justify-end border-t border-neutral-100 p-4 sm:p-6">
+          <Link
+            href="/profile/updateProfile"
+            className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-200 sm:w-auto"
+          >
+            <FaEdit />
+            তথ্য পরিবর্তন করুন
+          </Link>
         </div>
       </section>
     </main>

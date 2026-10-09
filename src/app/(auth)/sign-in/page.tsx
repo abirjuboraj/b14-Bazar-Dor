@@ -6,6 +6,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { useRouter } from "next/navigation";
 
 const SignInPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,10 +14,14 @@ const SignInPage = () => {
     "google" | "github" | null
   >(null);
 
+  const router = useRouter();
+
   const handleSignIn = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (isLoading || socialLoading !== null) return;
+
+  
 
     setIsLoading(true);
 
@@ -38,6 +43,7 @@ const SignInPage = () => {
 
       if (data?.user) {
         toast.success("সফলভাবে সাইন ইন হয়েছে!");
+        router.replace("/");
       }
     } catch {
       toast.error("সাইন ইন করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");

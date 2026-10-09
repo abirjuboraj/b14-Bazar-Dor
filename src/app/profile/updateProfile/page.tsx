@@ -39,7 +39,7 @@ const UpdateInformationForm = ({
   const [name, setName] = useState(initialName);
   const [loading, setLoading] = useState(false);
 
-  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleUpdate = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const updatedName = name.trim();
