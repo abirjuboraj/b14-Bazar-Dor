@@ -24,7 +24,7 @@ const SignUpPage = () => {
       email: userData.email as string,
       password: userData.password as string,
       name: userData.name as string,
-      callbackURL: "/sign-in",
+      callbackURL: "/",
     });
 
     setLoading(false);
@@ -36,7 +36,7 @@ const SignUpPage = () => {
 
     if (data?.user) {
       toast.success("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!");
-      redirect("/sign-in")
+      redirect("/")
     }
   };
 
