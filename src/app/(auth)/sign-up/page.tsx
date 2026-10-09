@@ -2,7 +2,7 @@
 
 import { signIn, signUp } from "@/lib/auth-client";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
@@ -13,6 +13,8 @@ const SignUpPage = () => {
   const [socialLoading, setSocialLoading] = useState<
     "google" | "github" | null
   >(null);
+
+  const router = useRouter();
 
   const handleSignUp = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,7 +41,8 @@ const SignUpPage = () => {
 
       if (data?.user) {
         toast.success("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!");
-        redirect("/")
+        router.replace("/");
+        
       }
     } catch {
       toast.error("অ্যাকাউন্ট তৈরি করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
