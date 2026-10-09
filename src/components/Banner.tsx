@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CurrentDate from "./CurrentDate";
 
 const Banner = () => {
   return (
@@ -7,12 +8,7 @@ const Banner = () => {
         <div className="flex-1 p-5 sm:p-7 md:p-10 ">
           <div className="max-w-xl">
             <p className="mb-4 inline-flex rounded-full bg-green-50 px-3 py-1.5 text-xs font-semibold text-green-600 sm:text-sm">
-              {new Date().toLocaleDateString("bn-BD", {
-                weekday: "long",
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
+              <CurrentDate></CurrentDate>
             </p>
 
             <h2 className="text-2xl font-bold leading-tight text-neutral-900 sm:text-3xl md:text-4xl">

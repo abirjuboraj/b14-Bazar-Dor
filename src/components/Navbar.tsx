@@ -4,6 +4,7 @@ import ProductMarquee from "./ProductMarquee";
 import Link from "next/link";
 import CategoryLinks from "./CategoryLinks";
 import NavLinks from "./NavLinks";
+import CurrentDate from "./CurrentDate";
 
 
 const Navbar = async () => {
@@ -34,12 +35,7 @@ const Navbar = async () => {
               </h3>
 
               <p className="mt-0.5 truncate text-[11px] text-neutral-500 sm:text-sm">
-                {new Date().toLocaleDateString("bn-BD", {
-                  weekday: "long",
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
+                <CurrentDate></CurrentDate>
               </p>
             </div>
           </div>
