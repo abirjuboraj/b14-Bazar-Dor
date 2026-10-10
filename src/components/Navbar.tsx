@@ -5,6 +5,8 @@ import Link from "next/link";
 import CategoryLinks from "./CategoryLinks";
 import NavLinks from "./NavLinks";
 import CurrentDate from "./CurrentDate";
+import { Suspense } from "react";
+import CategoryLinksSkeleton from "./loadingSkeleton/CategoryLoaderSkeleton";
 
 
 const Navbar = async () => {
@@ -44,7 +46,9 @@ const Navbar = async () => {
         </div>
       </div>
 
-      <CategoryLinks></CategoryLinks>
+      <Suspense fallback={<CategoryLinksSkeleton></CategoryLinksSkeleton>}>
+        <CategoryLinks></CategoryLinks>
+      </Suspense>
 
       <ProductMarquee products={products}></ProductMarquee>
     </header>
