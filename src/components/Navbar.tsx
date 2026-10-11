@@ -11,7 +11,7 @@ import CategoryLinksSkeleton from "./loadingSkeleton/CategoryLoaderSkeleton";
 
 const Navbar = async () => {
   const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/products",
+    "https://openapi.programming-hero.com/api/bazardor/products",
   );
 
   const products: Product[] = await res.json();
@@ -23,7 +23,7 @@ const Navbar = async () => {
           <div className="flex min-w-0 items-center gap-2 sm:gap-3">
             <Link href="/">
               <Image
-                src="/logo-icon.png"
+                src="/logo.png"
                 alt="bazar dor"
                 width={48}
                 height={48}

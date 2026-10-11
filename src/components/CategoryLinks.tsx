@@ -3,7 +3,7 @@ import CategoryNavLinks from "./CategoryNavLinks";
 
 const CategoryLinks = async () => {
   const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/categories"
+    "https://openapi.programming-hero.com/api/bazardor/categories"
   );
 
   const categoryName: categoryType[] = await res.json();
