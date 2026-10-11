@@ -25,7 +25,7 @@ const NavLinks = () => {
 
     setOpen(false);
     toast.success("সফলভাবে সাইন আউট হয়েছে।");
-    redirect("/");
+    redirect("/sign-in");
   };
 
   if (isPending) {
